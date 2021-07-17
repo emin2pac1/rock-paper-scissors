@@ -1,3 +1,4 @@
+let playerWins = 0, computerWins = 0, ties =0;
 gameRound();
 function computerPlay () {
     let randComputerChoice = Math.floor((Math.random() * 100) + 1);
@@ -15,7 +16,9 @@ function playerPlay(){
 
         const rock = "rock", paper = "paper", scissors ="scissors";
         const playerChoice = prompt("What's your choice?");
-        if (!isNaN(playerChoice) || playerChoice ==undefined || playerChoice == null || playerChoice == '') {
+        if(playerChoice == null)
+        return;
+        if (!isNaN(playerChoice) || playerChoice ==undefined || playerChoice == '') {
             alert('Invalid input');
             return playerPlay();
         }
@@ -31,17 +34,28 @@ function playerPlay(){
 }
 
 function gameRound (){
-
         const playerFinalResult = playerPlay();
+        if(playerFinalResult == null)
+        return;
         const computerFinalResult = computerPlay();
         alert(`Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`);
-        if (playerFinalResult == computerFinalResult)
+        if (playerFinalResult == computerFinalResult) {
             alert(`It's a TIE`);
-            else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS') || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') )
+            ++ties;
+        }
+            else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS') || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
             alert (`PLAYER wins`);
-            else alert (`COMPUTER wins`);
+            ++playerWins
+            }
+            else {
+                alert (`COMPUTER wins`);
+                ++computerWins;
+            }
             let tryAgain = confirm(`Another round?`);
             if (tryAgain)
             return gameRound();
-            else alert(`Goodbye`);
+            else { 
+                alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) \nNumber of ties is ${ties}`);
+                alert(`Goodbye`);
+            }
 }
