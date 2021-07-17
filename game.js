@@ -14,26 +14,33 @@ function computerPlay () {
 }
 function playerPlay(){
 
-        const rock = "rock", paper = "paper", scissors ="scissors";
-        const playerChoice = prompt("What's your choice?");
-        if(playerChoice == null)
-        return;
-        if (!isNaN(playerChoice) || playerChoice ==undefined || playerChoice == '') {
+        const rock = "rock", paper = "paper", scissors ="scissors"
+        const playerChoice = prompt(`What's your choice?`);
+        if (playerChoice == null || playerChoice == '') {
             alert('Invalid input');
             return playerPlay();
         }
-        if ((playerChoice.toUpperCase() === rock.toUpperCase()) || (playerChoice.toUpperCase() === paper.toUpperCase()) || (playerChoice.toUpperCase() === scissors.toUpperCase()) ) {
+        if ((playerChoice.toUpperCase() === rock.toUpperCase()) || (playerChoice.toUpperCase()
+         === paper.toUpperCase()) || (playerChoice.toUpperCase() === scissors.toUpperCase()) ) {
             return playerChoice.toUpperCase();
         }
 
         else {
-            alert("Enter Rock, Paper or Scissors...")
+            alert("Enter Rock, Paper or Scissors...");
             return playerPlay();
         }
 
 }
 
 function gameRound (){
+        if(computerWins == 0 && playerWins == 0 && ties ==0) {
+        const start = confirm(`Welcome to Rock Paper Scissors!\n Ready to start the game?`);
+        if(!start) {
+        alert(`Goodbye!`)
+        return;
+        }
+
+        }
         const playerFinalResult = playerPlay();
         if(playerFinalResult == null)
         return;
@@ -43,7 +50,9 @@ function gameRound (){
             alert(`It's a TIE`);
             ++ties;
         }
-            else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS') || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
+            else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS')
+             || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') 
+             || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
             alert (`PLAYER wins`);
             ++playerWins
             }
@@ -55,7 +64,8 @@ function gameRound (){
             if (tryAgain)
             return gameRound();
             else { 
-                alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) \nNumber of ties is ${ties}`);
-                alert(`Goodbye`);
+                alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
+                Number of ties is ${ties}`);
+                alert(`Goodbye!`);
             }
 }
