@@ -1,5 +1,8 @@
 let playerWins = 0, computerWins = 0, ties =0;
+let playerChoice;
 const startButton = document.querySelector('#start-button');
+const display = document.querySelector('#game-display');
+
 startButton.addEventListener('click' , function () {
     const killOnStart = document.querySelectorAll('.disable-on-start').forEach(disableElement => {
         disableElement.setAttribute("disabled", "disabled");
@@ -9,10 +12,27 @@ startButton.addEventListener('click' , function () {
         enableElement.removeAttribute("disabled");
         
     });
+
+        display.textContent ="Please choose a weapon below";
+
     
-    gameRound();
   
 });
+
+
+let getChoice = document.querySelectorAll('.enable-after-start');   
+    getChoice.forEach( function(choice){
+        choice.addEventListener("click", function(){
+              playerChoice= choice.value;
+             if (playerChoice) gameRound();
+
+        } );
+        
+    });
+
+
+    // console.log(weapons.value);
+
 function computerPlay () {
     let randComputerChoice = Math.floor((Math.random() * 100) + 1);
     let computerChoiceResult;
@@ -25,65 +45,59 @@ function computerPlay () {
         return computerChoiceResult;
 
 }
-function playerPlay(){
 
-        const rock = "rock", paper = "paper", scissors ="scissors"
-        //const playerChoice = prompt(`What's your choice?`);
-        if (playerChoice == null || playerChoice == '') {
-            //alert('Invalid input');
-            return playerPlay();
-        }
-        if ((playerChoice.toUpperCase() === rock.toUpperCase()) || (playerChoice.toUpperCase()
-         === paper.toUpperCase()) || (playerChoice.toUpperCase() === scissors.toUpperCase()) ) {
-            return playerChoice.toUpperCase();
-        }
-
-        else {
-            //alert("Enter Rock, Paper or Scissors...");
-            return playerPlay();
-        }
-
-}
 
 function gameRound (){
-        if(computerWins == 0 && playerWins == 0 && ties ==0) {
-        const start = document.querySelector('#game-display');
-        start.textContent ="Please choose a weapon below";
+
+        /*if(computerWins == 0 && playerWins == 0 && ties ==0) {
+        
         if(!start) {
        // alert(`Goodbye!`)
         return;
         }
 
-        }
-        const weapons = document.querySelectorAll('.weapon');
-
+        }*/
         
+        
+        const computerFinalResult = computerPlay();
+        const playerFinalResult = playerChoice.toUpperCase();
 
-        const playerFinalResult = playerPlay();
         if(playerFinalResult == null)
         return;
-        const computerFinalResult = computerPlay();
-        //alert(`Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`);
+        display.textContent  = `Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`;
+
+        
         if (playerFinalResult == computerFinalResult) {
-            //alert(`It's a TIE`);
+
+            setTimeout(() => {
+                display.textContent  =`It's a TIE`;
+            }, 5000);
+    
             ++ties;
         }
             else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS')
              || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') 
              || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
-           // alert (`PLAYER wins`);
+                 setTimeout(() => {
+                    display.textContent  =`PLAYER wins`;
+                 }, 5000);
+
             ++playerWins
             }
             else {
-                //alert (`COMPUTER wins`);
+                setTimeout(() => {
+                    display.textContent  =`COMPUTER wins`;
+                }, 5000);
                 ++computerWins;
             }
+
+
             //let tryAgain = confirm(`Another round?`);
-            if (tryAgain)
+            /* if (tryAgain)
             return gameRound();
             else { 
-                //alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
-               // Number of ties is ${ties}`);
+                display.textContent  = `PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
+               // Number of ties is ${ties}`;
                 //alert(`Goodbye!`);
-            }
+            }*/
 }
