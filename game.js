@@ -31,8 +31,6 @@ let getChoice = document.querySelectorAll('.enable-after-start');
     });
 
 
-    // console.log(weapons.value);
-
 function computerPlay () {
     let randComputerChoice = Math.floor((Math.random() * 100) + 1);
     let computerChoiceResult;
@@ -48,16 +46,6 @@ function computerPlay () {
 
 
 function gameRound (){
-
-        /*if(computerWins == 0 && playerWins == 0 && ties ==0) {
-        
-        if(!start) {
-       // alert(`Goodbye!`)
-        return;
-        }
-
-        }*/
-        
         
         const computerFinalResult = computerPlay();
         const playerFinalResult = playerChoice.toUpperCase();
@@ -91,13 +79,4 @@ function gameRound (){
                 ++computerWins;
             }
 
-
-            //let tryAgain = confirm(`Another round?`);
-            /* if (tryAgain)
-            return gameRound();
-            else { 
-                display.textContent  = `PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
-               // Number of ties is ${ties}`;
-                //alert(`Goodbye!`);
-            }*/
-}
+           }
