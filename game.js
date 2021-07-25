@@ -15,9 +15,9 @@ function computerPlay () {
 function playerPlay(){
 
         const rock = "rock", paper = "paper", scissors ="scissors"
-        const playerChoice = prompt(`What's your choice?`);
+        //const playerChoice = prompt(`What's your choice?`);
         if (playerChoice == null || playerChoice == '') {
-            alert('Invalid input');
+            //alert('Invalid input');
             return playerPlay();
         }
         if ((playerChoice.toUpperCase() === rock.toUpperCase()) || (playerChoice.toUpperCase()
@@ -26,7 +26,7 @@ function playerPlay(){
         }
 
         else {
-            alert("Enter Rock, Paper or Scissors...");
+            //alert("Enter Rock, Paper or Scissors...");
             return playerPlay();
         }
 
@@ -34,9 +34,9 @@ function playerPlay(){
 
 function gameRound (){
         if(computerWins == 0 && playerWins == 0 && ties ==0) {
-        const start = confirm(`Welcome to Rock Paper Scissors!\n Ready to start the game?`);
+       // const start = confirm(`Welcome to Rock Paper Scissors!\n Ready to start the game?`);
         if(!start) {
-        alert(`Goodbye!`)
+       // alert(`Goodbye!`)
         return;
         }
 
@@ -45,27 +45,27 @@ function gameRound (){
         if(playerFinalResult == null)
         return;
         const computerFinalResult = computerPlay();
-        alert(`Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`);
+        //alert(`Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`);
         if (playerFinalResult == computerFinalResult) {
-            alert(`It's a TIE`);
+            //alert(`It's a TIE`);
             ++ties;
         }
             else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS')
              || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') 
              || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
-            alert (`PLAYER wins`);
+           // alert (`PLAYER wins`);
             ++playerWins
             }
             else {
-                alert (`COMPUTER wins`);
+                //alert (`COMPUTER wins`);
                 ++computerWins;
             }
-            let tryAgain = confirm(`Another round?`);
+            //let tryAgain = confirm(`Another round?`);
             if (tryAgain)
             return gameRound();
             else { 
-                alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
-                Number of ties is ${ties}`);
-                alert(`Goodbye!`);
+                //alert (`PLAYER won ${playerWins} time(s) and COMPUTER won ${computerWins} time(s) 
+               // Number of ties is ${ties}`);
+                //alert(`Goodbye!`);
             }
 }
