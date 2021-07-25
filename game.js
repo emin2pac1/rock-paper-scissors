@@ -1,5 +1,18 @@
 let playerWins = 0, computerWins = 0, ties =0;
-gameRound();
+const startButton = document.querySelector('#start-button');
+startButton.addEventListener('click' , function () {
+    const killOnStart = document.querySelectorAll('.disable-on-start').forEach(disableElement => {
+        disableElement.setAttribute("disabled", "disabled");
+    });
+    
+    const enableOnStart = document.querySelectorAll('.enable-after-start').forEach(enableElement => {
+        enableElement.removeAttribute("disabled");
+        
+    });
+    
+    gameRound();
+  
+});
 function computerPlay () {
     let randComputerChoice = Math.floor((Math.random() * 100) + 1);
     let computerChoiceResult;
@@ -34,13 +47,18 @@ function playerPlay(){
 
 function gameRound (){
         if(computerWins == 0 && playerWins == 0 && ties ==0) {
-       // const start = confirm(`Welcome to Rock Paper Scissors!\n Ready to start the game?`);
+        const start = document.querySelector('#game-display');
+        start.textContent ="Please choose a weapon below";
         if(!start) {
        // alert(`Goodbye!`)
         return;
         }
 
         }
+        const weapons = document.querySelectorAll('.weapon');
+
+        
+
         const playerFinalResult = playerPlay();
         if(playerFinalResult == null)
         return;

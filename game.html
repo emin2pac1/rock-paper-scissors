@@ -4,24 +4,33 @@
         <meta charset="utf-8">
         <title>
         </title>
-        <script src="game.js"></script>
+        <script defer src="game.js"></script>
         <link rel="stylesheet" href="base.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <div class="top"></div>
+            <div class="top">
+                <h1 class="jumbotron">Rock, Paper, Scissors</h1>
+            </div>
             <div class="mid">
 
-                 <button>Start Game</button>
-                 <button>Replay</button>
-                 <div id="game-display">some Content</div>
-                 <button>Rock</button>
-                 <button>Paper</button>
-                 <button>Scissors</button>
-
+                 <button id="start-button" class="disable-on-start" style="padding: 10% 40%">Start</button>
+                 <button id="replay-button" class="enable-after-start" style="display: none;">Replay</button>
+                 <div id="game-display">Click "Start Game" to Start</div>
+                 <button class="enable-after-start" disabled value="rock">Rock</button>
+                 <button class="enable-after-start" disabled>Paper</button>
+                 <button class="enable-after-start" disabled>Scissors</button>
 
              </div>
-            <div class="btm"></div>
+
+            <div class="btm">
+
+                <p id="attr">Made by Milad K. <a href="https://github.com/emin2pac1" target="_blank"> (@emin2pac1) </a> as part of <a href="https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/dom-manipulation"> TOP </a> </p>
+
+            </div>
 
         </div>
     </body>
