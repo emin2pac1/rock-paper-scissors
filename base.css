@@ -73,6 +73,7 @@ body{
 
 #game-display{
     background-color:bisque;
+    width:80%;
     padding: 0.9rem;
     margin: 1.2rem 0;
     border: 2px dashed black;
@@ -88,6 +89,10 @@ button{
   border: 0;
   padding: 0.9rem;
   margin: 0.3rem 0.3rem;
+}
+
+#replay-button{
+  margin-left: 32%;
 }
 
 button:hover{
