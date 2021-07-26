@@ -6,7 +6,10 @@ const display = document.querySelector('#game-display');
 const getChoice = document.querySelectorAll('.enable-after-start'); 
 const killOnStart = document.querySelectorAll('.disable-on-start');
 const allButtons = document.querySelectorAll('button');
-console.log(allButtons);
+
+setTimeout(() => {
+    display.textContent=`Click "Start" to Start`;
+}, 3000);
 
 startButton.addEventListener('click' , function () {
     killOnStart.forEach(disableElement => {
@@ -24,6 +27,8 @@ startButton.addEventListener('click' , function () {
   
 });
 
+    if (playerWins == 5 || computerWins ==5)
+    gameRound();
 
     getChoice.forEach( function(choice){
         choice.addEventListener("click", function(){
@@ -56,66 +61,82 @@ function computerPlay () {
 }
 
 
-function gameRound (){
-        
-    if (playerWins == 5 || computerWins ==5 ) {
-
-        allButtons.forEach(disableElement => {
-            disableElement.setAttribute("disabled", "disabled");
-
-        });
-
-        display.textContent = "Game Over!";
-               
-        setTimeout(() => {
-            if(playerWins > computerWins) {
-
-                display.textContent="Player Won the Game";
-                return;
-
-            }
-            else if (computerWins > playerWins) {
-                display.textContent="Computer Won the Game";
-                return;
-            }
-        }, 8000);
-            
-    }
-
-        const computerFinalResult = computerPlay();
-        const playerFinalResult = playerChoice.toUpperCase();
-        console.log(`${playerWins}  ${computerWins}`)
+function gameRound (){    
+    const computerFinalResult = computerPlay();
+    const playerFinalResult = playerChoice.toUpperCase();
+    
         if(playerFinalResult == null)
         return;
+        if(playerWins<5 && computerWins<5)
         display.textContent  = `Player Chose ${playerFinalResult}`;
 
         setTimeout(() => {
+            if(playerWins<5 && computerWins<5)
             display.textContent  =`Computer Chose ${computerFinalResult}`;
-        }, 3000);
+        }, 2000);
 
         
         if (playerFinalResult == computerFinalResult) {
+            ++ties;
 
             setTimeout(() => {
                 display.textContent  =`It's a TIE`;
-            }, 6000);
+            }, 4000);
     
-            ++ties;
         }
-            else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS')
-             || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') 
-             || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
+        else if (  (playerFinalResult == 'ROCK' && computerFinalResult == 'SCISSORS')
+                 || (playerFinalResult == 'PAPER' && computerFinalResult == 'ROCK') 
+                || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
+                ++playerWins;
                  setTimeout(() => {
+                     if(playerWins<5 && computerWins<5)
                     display.textContent  =`PLAYER wins`;
-                 }, 6000);
+                 }, 4000);
 
-            ++playerWins
             }
+
             else {
-                setTimeout(() => {
-                    display.textContent  =`COMPUTER wins`;
-                }, 6000);
                 ++computerWins;
+                setTimeout(() => {
+                    if(playerWins<5 && computerWins<5)
+                    display.textContent  =`COMPUTER wins`;
+                }, 4000);
+            }
+
+         if (playerWins == 5 || computerWins ==5 ) {
+
+            allButtons.forEach(disableElement => {
+
+                disableElement.setAttribute("disabled", "disabled");
+        
+             });
+        
+            display.textContent = "Game Over!";
+
+                setTimeout(() => {
+                    display.textContent  = `Player Chose ${playerFinalResult}`;    
+                }, 2000);
+
+
+                setTimeout(() => {
+                    display.textContent  =`Computer Chose ${computerFinalResult}`;
+                }, 4000);
+                       
+                setTimeout(() => {
+                    if(playerWins > computerWins) {
+        
+                        display.textContent="Player Won the Game";
+        
+                    }
+        
+                    if (computerWins> playerWins) {
+                        display.textContent="Computer Won the Game";
+                    }
+                    
+                    },6000);
+                
+                
+                return;
             }
     
 
