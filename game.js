@@ -21,7 +21,7 @@ startButton.addEventListener('click' , function () {
         
     });
 
-        display.textContent ="Please choose a weapon below";
+        display.textContent ="choose a weapon";
 
     
   
@@ -141,7 +141,7 @@ function gameRound (){
     
 
             setTimeout(() => {
-                display.textContent  =`Hit "Replay" for another round`;
+                display.textContent  =`Another Round?`;
                 replayButton.removeAttribute('disabled');
             }, 8000);            
 
@@ -155,7 +155,7 @@ function gameRound (){
 
                 setTimeout(() => {
                     replayButton.setAttribute("disabled","disabled");
-                    display.textContent="Please Choose a Weapon Below";
+                    display.textContent="Choose a Weapon";
                 }, 100);
             });
 
