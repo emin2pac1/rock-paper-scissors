@@ -1,17 +1,19 @@
 let playerWins = 0, computerWins = 0, ties =0;
 let playerChoice;
 const startButton = document.querySelector('#start-button');
+const replayButton = document.querySelector('#replay-button');
 const display = document.querySelector('#game-display');
 const getChoice = document.querySelectorAll('.enable-after-start'); 
 const killOnStart = document.querySelectorAll('.disable-on-start');
-const enableOnStart = document.querySelectorAll('.enable-after-start');  
+const allButtons = document.querySelectorAll('button');
+console.log(allButtons);
 
 startButton.addEventListener('click' , function () {
     killOnStart.forEach(disableElement => {
         disableElement.setAttribute("disabled", "disabled");
     });
     
-    enableOnStart.forEach(enableElement => {
+    getChoice.forEach(enableElement => {
         enableElement.removeAttribute("disabled");
         
     });
@@ -27,7 +29,7 @@ startButton.addEventListener('click' , function () {
         choice.addEventListener("click", function(){
               playerChoice= choice.value;
              if (playerChoice) {
-                 enableOnStart.forEach( btn =>{
+                 getChoice.forEach( btn =>{
                      btn.setAttribute("disabled", "disabled");
                  });
                 gameRound();
@@ -56,9 +58,33 @@ function computerPlay () {
 
 function gameRound (){
         
+    /*if (playerWins == 5 || computerWins ==5 ) {
+
+        allButtons.forEach(disableElement => {
+            disableElement.setAttribute("disabled", "disabled");
+
+        });
+
+        display.textContent = "Game Over!";
+               
+        setTimeout(() => {
+            if(playerWins > computerWins) {
+
+                display.textContent="Player Won the Game";
+                return;
+
+            }
+            else if (computerWins > playerWins) {
+                display.textContent="Computer Won the Game";
+                return;
+            }
+        }, 8000);
+            
+    }*/
+
         const computerFinalResult = computerPlay();
         const playerFinalResult = playerChoice.toUpperCase();
-
+        console.log(`${playerWins}  ${computerWins}`)
         if(playerFinalResult == null)
         return;
         display.textContent  = `Player Chose ${playerFinalResult}`;
@@ -91,5 +117,25 @@ function gameRound (){
                 }, 6000);
                 ++computerWins;
             }
+    
 
-           }
+            setTimeout(() => {
+                display.textContent  =`Hit "Replay" for another round`;
+                replayButton.removeAttribute('disabled');
+            }, 8000);            
+
+            replayButton.addEventListener('click', function () {
+
+                getChoice.forEach(enableElement => {
+                    enableElement.removeAttribute("disabled");
+
+                    
+                });
+
+                setTimeout(() => {
+                    replayButton.setAttribute("disabled","disabled");
+                    display.textContent="Please Choose a Weapon Below";
+                }, 100);
+            });
+
+            }

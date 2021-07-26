@@ -21,14 +21,13 @@ body{
   }
   
   @media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
+  and (max-width: 360px) 
+   {
 
     .container {
       display: grid;
       grid-template-columns:  2fr ;
-      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-rows: 10% 80% 10%;
       gap: 0px 0px;
       grid-auto-flow: row;
       grid-template-areas:
