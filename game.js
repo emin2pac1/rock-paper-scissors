@@ -58,7 +58,7 @@ function computerPlay () {
 
 function gameRound (){
         
-    /*if (playerWins == 5 || computerWins ==5 ) {
+    if (playerWins == 5 || computerWins ==5 ) {
 
         allButtons.forEach(disableElement => {
             disableElement.setAttribute("disabled", "disabled");
@@ -80,7 +80,7 @@ function gameRound (){
             }
         }, 8000);
             
-    }*/
+    }
 
         const computerFinalResult = computerPlay();
         const playerFinalResult = playerChoice.toUpperCase();
