@@ -2,13 +2,16 @@ let playerWins = 0, computerWins = 0, ties =0;
 let playerChoice;
 const startButton = document.querySelector('#start-button');
 const display = document.querySelector('#game-display');
+const getChoice = document.querySelectorAll('.enable-after-start'); 
+const killOnStart = document.querySelectorAll('.disable-on-start');
+const enableOnStart = document.querySelectorAll('.enable-after-start');  
 
 startButton.addEventListener('click' , function () {
-    const killOnStart = document.querySelectorAll('.disable-on-start').forEach(disableElement => {
+    killOnStart.forEach(disableElement => {
         disableElement.setAttribute("disabled", "disabled");
     });
     
-    const enableOnStart = document.querySelectorAll('.enable-after-start').forEach(enableElement => {
+    enableOnStart.forEach(enableElement => {
         enableElement.removeAttribute("disabled");
         
     });
@@ -20,15 +23,21 @@ startButton.addEventListener('click' , function () {
 });
 
 
-let getChoice = document.querySelectorAll('.enable-after-start');   
     getChoice.forEach( function(choice){
         choice.addEventListener("click", function(){
               playerChoice= choice.value;
-             if (playerChoice) gameRound();
+             if (playerChoice) {
+                 enableOnStart.forEach( btn =>{
+                     btn.setAttribute("disabled", "disabled");
+                 });
+                gameRound();
+             } 
 
         } );
         
     });
+
+    
 
 
 function computerPlay () {
@@ -52,14 +61,18 @@ function gameRound (){
 
         if(playerFinalResult == null)
         return;
-        display.textContent  = `Player Chose ${playerFinalResult} & Computer Chose ${computerFinalResult}`;
+        display.textContent  = `Player Chose ${playerFinalResult}`;
+
+        setTimeout(() => {
+            display.textContent  =`Computer Chose ${computerFinalResult}`;
+        }, 3000);
 
         
         if (playerFinalResult == computerFinalResult) {
 
             setTimeout(() => {
                 display.textContent  =`It's a TIE`;
-            }, 5000);
+            }, 6000);
     
             ++ties;
         }
@@ -68,14 +81,14 @@ function gameRound (){
              || (playerFinalResult == 'SCISSORS' && computerFinalResult == 'PAPER') ) {
                  setTimeout(() => {
                     display.textContent  =`PLAYER wins`;
-                 }, 5000);
+                 }, 6000);
 
             ++playerWins
             }
             else {
                 setTimeout(() => {
                     display.textContent  =`COMPUTER wins`;
-                }, 5000);
+                }, 6000);
                 ++computerWins;
             }
 
