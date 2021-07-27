@@ -103,6 +103,10 @@ function gameRound (){
                 }, 4000);
             }
 
+            setTimeout(() => {
+                display.textContent  =`Player: ${playerWins} && Computer: ${computerWins}`;
+            }, 6000);
+
          if (playerWins == 5 || computerWins ==5 ) {
 
             allButtons.forEach(disableElement => {
