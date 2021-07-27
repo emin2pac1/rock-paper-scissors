@@ -82,7 +82,7 @@ button:active{
   font-size: 1.6wv 1.2vh;
 }
 
-@media screen and (max-width: 360px) 
+@media screen and (max-width: 420px) 
    {
 
     .container {
